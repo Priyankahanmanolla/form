@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Scenario</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<style>
+    .main{
+        background-color: black; 
+        color: white; 
+        width: 1000px; 
+        padding: 50px; 
+        border-radius: 8px; 
+        display: flex; 
+        flex-direction: column;
+    }
+    .scenario{
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between; 
+        width: 100%; 
+        margin-bottom: 20px; 
+        background-color: rgb(78, 72, 72); 
+        height:150px ; 
+        width: 900px;
+    }
+    .scenario div{
+        display: flex; 
+        flex-direction: column; 
+        margin: 30px;
+    }
+    .scenario input{
+        margin-top: 10px; 
+        padding: 10px; 
+        border-radius: 4px; 
+        border: none;
+    }
+    .button-group{
+        margin-top: 20px;
+    }
+    .button-group button{
+        margin-right: 10px; 
+        padding: 10px 20px; 
+        border: none; 
+        border-radius: 4px; 
+        font-size: 16px;
+    }
+    dl dt:hover {
+        background-color: white; 
+        cursor: pointer; 
+        padding: 5px; 
+        border-radius: 4px;
+    }
+    
+</style>
+<body style="padding-left: 10%; padding-top: 2%; display: flex">
+    <div style="padding: 3%; background-color: rgb(214, 250, 250); font-size: 20px; border-radius: 8px;">
+        <dl>
+            <dt id="home">Home</dt><br>
+            <dt id="add-scenario">Add Scenario</dt><br>
+            <dt id="all-scenarios">All Scenarios</dt><br>
+            <dt id="add-vehicles">Add Vehicle</dt>
+        </dl>
+    </div>
+    <div class="main">
+        <h5>Scenario/add</h5>
+        <h2>Add Scenario</h2>
+        <div class="scenario">
+            <div>
+                <label>Scenario Name</label>
+                <input type="text" id="scenarioName" placeholder="Enter scenario name">
+            </div>
+            <div>
+                <label>Scenario Time (Seconds)</label>
+                <input type="text" id="scenarioTime" placeholder="10">
+                <p class="alert-message" id="time-alert"></p>
+            </div>
+        </div>
+        <div class="button-group">
+            <button onclick="AddClick()" style="background-color: rgb(106,255,47); color: white;" >Add</button>
+            <button onclick="ResetClick()" style="background-color: orange; color: white" >Reset</button>
+            <button onclick="GoBackClick()" style="background-color: lightskyblue; color:white">Go Back</button>
+        </div>
+    </div>
+    <script>
+        function AddClick() {
+            var scenarioName = document.getElementById("scenarioName").value;
+            var scenarioTime = document.getElementById("scenarioTime").value;
+            
+            if (scenarioName === "") {
+                alert("Please enter a scenario name");
+                return;
+            }
+            
+            if (scenarioTime === "" || isNaN(scenarioTime) || scenarioTime <= 0) {
+                document.getElementById("time-alert").innerHTML = "Please enter a valid scenario time";
+                return;
+            } else {
+                document.getElementById("time-alert").innerHTML = "";
+            }
+            
+            alert("Scenario Added:\nName: " + scenarioName + "\nTime: " + scenarioTime + " seconds");
+        }
+        
+        function ResetClick() {
+            document.getElementById("scenarioName").value = "";
+            document.getElementById("scenarioTime").value = "";
+            document.getElementById("time-alert").innerHTML = "";
+        }
+        
+        function GoBackClick() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
